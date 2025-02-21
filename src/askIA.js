@@ -21,7 +21,31 @@ let apiKey= import.meta.env.VITE_SOME_KEY;
  console.log(apiKey)
 const client = new HfInference(`${apiKey}`);
 console.log(client)
+
+
 export async function askIA(question) {
+   const historyContainer = document.getElementById("historyContainer");
+
+   const loadingMessage = document.createElement("p");
+   loadingMessage.id = "loadingMessage";
+  // loadingMessage.textContent = "Cargando...";
+  loadingMessage.innerHTML = '<div class="loader flex justify-center text-center"><img src="https://svgsilh.com/svg/159507.svg" class="w-32 h-32"/></div> <strong>Cargando...</strong>'
+                              
+   historyContainer.appendChild(loadingMessage);
+
+   setTimeout(() => {
+      // Eliminar mensaje de carga después de completar la tarea
+      loadingMessage.remove();
+    
+      // Agregar contenido con HTML
+      const result = document.createElement('div');
+      result.innerHTML = `
+        <h2>✅ Contenido cargado</h2>
+        <p>Aquí tienes los resultados de la API.</p>
+      `;
+      historyContainer.appendChild(result);
+    }, 7000);
+
    try {
       const chatCompletion = await client.chatCompletion({
          model: "deepseek-ai/DeepSeek-V3",  // Reemplaza con el modelo que quieras usar
@@ -69,6 +93,8 @@ export function displayResponses() {
    responseIA.forEach((entry, index) => {
 
 
+   
+
       const pregunta = `<div class="mb-4 mt-4 flex flex-row md:w-xl  gap-2.5 mb-1 w-xs ">
    <img class="w-8 h-8 rounded-full" src="https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg" alt="Jese image">
    <div class="flex flex-col w-full leading-1.5 p-2 bg-lime-100 rounded-e-xl  ">
@@ -89,7 +115,7 @@ export function displayResponses() {
          <span class="text-sm font-bold text-gray-900 text-gray-500 ">Thunder response</span>
          <span class="text-sm font-normal dark:text-gray-400">${new Date(entry.timestamp).toLocaleString()}</span>
       </div>
-      <p class="text-sm font-normal py-1.5 text-gray-800 animation-text">${entry.response}</p>
+      <p class="text-sm font-normal py-1.5 text-gray-800 animation-text">${entry.response} </p>
       <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
    </div>
   
@@ -154,7 +180,7 @@ export function filterDateResponse() {
                 ${value.map(item => `
             
                 <div class="flex justify-end" data-id="${item.id}">
-                  <li>${item.question}</li>
+                  <li class="text-right">${item.question}</li>
                    <button onclick="btnDelete('${item.id}')" class="btnTrash ml-10 w-8 h-8 p-2 bg-lime-200"><i class="fa-solid fa-trash-can"></i></button> 
 
                   </div>
@@ -208,6 +234,8 @@ function btnDelete(id){
 }
 
 window.btnDelete = btnDelete;
+
+
 
 
 
