@@ -1,11 +1,11 @@
-import { HfInference } from "@huggingface/inference";
+import { InferenceClient } from "@huggingface/inference";
+
+
 import './style.css'
 
 
 
 /*funciones para el sidebar*/
-
- 
 
 
 export function abrirSidebar() {
@@ -19,7 +19,7 @@ export function abrirSidebar() {
 
 let apiKey= import.meta.env.VITE_SOME_KEY;
  console.log(apiKey)
-const client = new HfInference(`${apiKey}`);
+const client = new InferenceClient(`${apiKey}`);
 console.log(client)
 
 
@@ -29,7 +29,7 @@ export async function askIA(question) {
    const loadingMessage = document.createElement("p");
    loadingMessage.id = "loadingMessage";
   // loadingMessage.textContent = "Cargando...";
-  loadingMessage.innerHTML = '<div class="loader flex justify-center text-center"><img src="https://svgsilh.com/svg/159507.svg" class="w-32 h-32"/></div> <strong>Cargando...</strong>'
+  loadingMessage.innerHTML = '<div class="loader flex justify-center text-center"><img src="https://svgsilh.com/svg/159507.svg" class="w-12 h-12 text-center"/></div> <strong>Cargando...</strong>'
                               
    historyContainer.appendChild(loadingMessage);
 
@@ -109,7 +109,7 @@ export function displayResponses() {
 </div>
 
 <div class="md:ml-5 flex flex-row md:w-xl gap-2.5 mb-1 w-xs ">
-   <img class="w-8 h-8 rounded-full" src="public/thunder4.png" alt="Jese image">
+   <img class="w-12 h-8 object-fit rounded-full " src="public/thunder4.png" alt="Jese image">
    <div class="flex flex-col w-full w-xs md:w-xl lg:w-lg leading-1.5 p-1 border-gray-200 bg-slate-50 rounded-e-xl rounded-es-xl dark:bg-gray-300">
       <div class="flex items-center space-x-2 rtl:space-x-reverse ">
          <span class="text-sm font-bold text-gray-900 text-gray-500 ">Thunder response</span>
