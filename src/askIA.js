@@ -28,37 +28,36 @@ export async function askIA(question) {
 
    const loadingMessage = document.createElement("p");
    loadingMessage.id = "loadingMessage";
-  // loadingMessage.textContent = "Cargando...";
+ 
   loadingMessage.innerHTML = '<div class="loader flex justify-center text-center"><img src="https://svgsilh.com/svg/159507.svg" class="w-12 h-12 text-center"/></div> <strong>Cargando...</strong>'
                               
    historyContainer.appendChild(loadingMessage);
 
    setTimeout(() => {
-      // Eliminar mensaje de carga después de completar la tarea
+    
       loadingMessage.remove();
     
-      // Agregar contenido con HTML
       const result = document.createElement('div');
       result.innerHTML = `
         <h2>✅ Contenido cargado</h2>
-        <p>Aquí tienes los resultados de la API.</p>
+        <p>Resultados de la API.</p>
       `;
       historyContainer.appendChild(result);
     }, 7000);
 
    try {
       const chatCompletion = await client.chatCompletion({
-         model: "deepseek-ai/DeepSeek-V3",  // Reemplaza con el modelo que quieras usar
+         model: "deepseek-ai/DeepSeek-V3", 
          messages: [{ role: "user", content: question }],
-         provider: "together",  // Este es el proveedor de Hugging Face
+         provider: "together",  
          max_tokens: 200
       });
 
       console.log("Respuesta de la API:", chatCompletion);
 
       const chatEntry = {
-         id: chatCompletion.id, // ID único
-         timestamp: new Date().toISOString(), // Fecha y hora en ISO
+         id: chatCompletion.id, 
+         timestamp: new Date().toISOString(), 
          question,
          response: chatCompletion.choices[0].message.content
       };
@@ -86,14 +85,11 @@ export function displayResponses() {
       return;
    }
 
-   historyContainer.innerHTML = ""; // Limpia antes de renderizar
+   historyContainer.innerHTML = ""; 
 
    const responseIA = JSON.parse(localStorage.getItem("ia") || "[]");
 
    responseIA.forEach((entry, index) => {
-
-
-   
 
       const pregunta = `<div class="mb-4 mt-4 flex flex-row md:w-xl  gap-2.5 mb-1 w-xs ">
    <img class="w-8 h-8 rounded-full" src="https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg" alt="Jese image">
@@ -122,13 +118,8 @@ export function displayResponses() {
    </div>
 </div>
 
-
 `;
-
-
       historyContainer.innerHTML += pregunta;
-
-
    });
 }
 
@@ -137,14 +128,12 @@ export function displayResponses() {
 export function filterDateResponse() {
 
    const historyDateContainer = document.getElementById("container-date");
-
    if (!historyDateContainer) {
       console.error("Elemento historyContainer no encontrado en el DOM");
       return;
    }
 
    historyDateContainer.innerHTML = "";
-
    const responseIA = JSON.parse(localStorage.getItem("ia") || "[]");
 
    var groups ={};
@@ -156,20 +145,15 @@ export function filterDateResponse() {
       if (date in groups) {
          console.log(key)
          groups[date].push({ id: val.id, question: val.question });
-         
-
       } else {
          groups[date] = new Array({ id: val.id, question: val.question });
-         
       }
 
    })
 
 
    Object.entries(groups).forEach(([key, value]) => {
-     // console.log(`${key} : ${value}`)
-     //console.log(groups)
-
+   
       let liConsultas = `
             <div class="flex w-full flex-col bg-slate-50 p-1 mt-2 rounded-xs ">
             
@@ -189,11 +173,6 @@ export function filterDateResponse() {
 
               </div>
            
-               
-             
-            
-          
-       
              `;
 
       historyDateContainer.innerHTML += liConsultas;
@@ -203,10 +182,8 @@ export function filterDateResponse() {
 }
 
 
-   
 
 filterDateResponse()
-
 
 function btnDelete(id){
    const containerbtn = document.querySelectorAll(".containerBtnsDelete");
@@ -227,10 +204,8 @@ function btnDelete(id){
       responseIA = responseIA.filter((itemId=> itemId.id !==  id));
       localStorage.setItem('ia', JSON.stringify(responseIA));
    }
-
    console.log(responseIA);
-     
-
+   
 }
 
 window.btnDelete = btnDelete;
