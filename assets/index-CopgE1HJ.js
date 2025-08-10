@@ -1151,12 +1151,12 @@ ${Object.entries(e).map(([n,o])=>{const s=me(o,i+1),d=/^[a-zA-Z_$][a-zA-Z0-9_$]*
 `)}
 ${" ".repeat(4*i)}}`}function Xe(e){return e.split(`
 `).map(i=>" ".repeat(4)+i).join(`
-`)}function As(e,i){return e.endsWith(i)?e.slice(0,-i.length):e}function Ss(){document.querySelector(".sidebar").classList.toggle("-translate-x-full")}let ct="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";console.log(ct);const pt=new ps(`${ct}`);console.log(pt);async function Is(e){const i=document.getElementById("historyContainer"),t=document.createElement("p");t.id="loadingMessage",t.innerHTML='<div class="loader flex justify-center text-center"><img src="https://svgsilh.com/svg/159507.svg" class="w-12 h-12 text-center"/></div> <strong>Cargando...</strong>',i.appendChild(t),setTimeout(()=>{t.remove();const a=document.createElement("div");a.innerHTML=`
+`)}function As(e,i){return e.endsWith(i)?e.slice(0,-i.length):e}function Ss(){document.querySelector(".sidebar").classList.toggle("-translate-x-full")}let ct="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";console.log(ct);const pt=new ps(`${ct}`);console.log(pt);async function Is(e){const i=document.getElementById("historyContainer"),t=document.createElement("p");t.id="loadingMessage",t.innerHTML='<div class="loader flex justify-center text-center"><img src="https://svgsilh.com/svg/159507.svg" class="w-12 h-12 text-center"/></div> <strong>Cargando...</strong>',i.appendChild(t),setTimeout(()=>{t.remove();const a=document.createElement("div");a.innerHTML=`
         <h2>✅ Contenido cargado</h2>
-        <p>Resultados de la API.</p>
+       
       `,i.appendChild(a)},7e3);try{const a=await pt.chatCompletion({model:"deepseek-ai/DeepSeek-V3",messages:[{role:"user",content:e}],provider:"together",max_tokens:200});console.log("Respuesta de la API:",a);const n={id:a.id,timestamp:new Date().toISOString(),question:e,response:a.choices[0].message.content};let o=JSON.parse(localStorage.getItem("ia")||"[]");return o.push(n),localStorage.setItem("ia",JSON.stringify(o)),a.choices[0].message.content}catch(a){return console.error("Error:",a),"Hubo un error al procesar tu solicitud."}}function dt(){const e=document.getElementById("historyContainer");if(!e){console.error("Elemento historyContainer no encontrado en el DOM");return}e.innerHTML="",JSON.parse(localStorage.getItem("ia")||"[]").forEach((t,a)=>{const n=`<div class="mb-4 mt-4 flex flex-row md:w-xl  gap-2.5 mb-1 w-xs ">
    <img class="w-8 h-8 rounded-full" src="https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg" alt="Jese image">
-   <div class="flex flex-col w-full leading-1.5 p-2 bg-lime-100 rounded-e-xl  ">
+   <div class="flex flex-col w-full leading-1.5 p-1 bg-lime-100 rounded-e-xl  ">
       <div class="flex items-center space-x-1 rtl:space-x-reverse">
          <span class="text-sm font-bold text-gray-900 text-gray-500">You</span>
          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">${new Date(t.timestamp).toLocaleString()}</span>
@@ -1191,7 +1191,7 @@ ${" ".repeat(4*i)}}`}function Xe(e){return e.split(`
                 ${n.map(s=>`
             
                 <div class="flex justify-end" data-id="${s.id}">
-                  <li class="text-right">${s.question}</li>
+                  <li class="text-right text-xs">${s.question}</li>
                    <button onclick="btnDelete('${s.id}')" class="btnTrash ml-10 w-8 h-8 p-2 bg-lime-200"><i class="fa-solid fa-trash-can"></i></button> 
 
                   </div>
