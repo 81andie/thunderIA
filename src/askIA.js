@@ -39,7 +39,7 @@ export async function askIA(question) {
     
       const result = document.createElement('div');
       result.innerHTML = `
-        <h2>✅ Contenido cargado</h2>
+        <h2>✅Respuesta Deepseek</h2>
        
       `;
       historyContainer.appendChild(result);
@@ -47,9 +47,9 @@ export async function askIA(question) {
 
    try {
       const chatCompletion = await client.chatCompletion({
+          provider: "fireworks-ai",
          model: "deepseek-ai/DeepSeek-V3", 
          messages: [{ role: "user", content: question }],
-         provider: "together",  
          max_tokens: 200
       });
 
@@ -100,8 +100,8 @@ export function displayResponses() {
          <span class="text-sm font-bold text-gray-900 text-gray-500">You</span>
          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">${new Date(entry.timestamp).toLocaleString()}</span>
       </div>
-      <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-black">${entry.question}</p>
-      <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
+      <p class="text-xs font-normal py-2.5 text-gray-900 dark:text-black">${entry.question}</p>
+      <span class="text-xs font-normal text-gray-500 dark:text-gray-400">Delivered</span>
    </div>
    
 </div>
@@ -211,13 +211,3 @@ function btnDelete(id){
 }
 
 window.btnDelete = btnDelete;
-
-
-
-
-
-
-
-
-
-
