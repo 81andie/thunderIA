@@ -91,6 +91,8 @@ export function displayResponses() {
 
    responseIA.forEach((entry, index) => {
 
+      console.log(entry.question)
+
       const pregunta = `<div class="mb-4 mt-4 flex flex-row md:w-xl  gap-2.5 mb-1 w-xs ">
    <img class="w-8 h-8 rounded-full" src="https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg" alt="Jese image">
    <div class="flex flex-col w-full leading-1.5 p-1 bg-lime-100 rounded-e-xl  ">
@@ -164,7 +166,7 @@ export function filterDateResponse() {
                 ${value.map(item => `
             
                 <div class="flex justify-end" data-id="${item.id}">
-                  <li class="text-right text-xs">${item.question}</li>
+                  <li class="text-right text-xs ">${item.question}</li>
                    <button onclick="btnDelete('${item.id}')" class="btnTrash ml-10 w-8 h-8 p-2 bg-lime-200"><i class="fa-solid fa-trash-can"></i></button> 
 
                   </div>
