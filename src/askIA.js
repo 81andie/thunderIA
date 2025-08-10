@@ -19,7 +19,7 @@ export function abrirSidebar() {
 
 let apiKey= import.meta.env.VITE_SOME_KEY;
  console.log(apiKey)
-const client = new InferenceClient(`${apiKey}`);
+const client = new InferenceClient(`${apiKey}`);  
 console.log(client)
 
 
